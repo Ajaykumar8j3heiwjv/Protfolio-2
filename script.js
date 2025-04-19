@@ -342,7 +342,7 @@ function initFormValidation() {
 }
 
 // Handle navigation to other pages
-document.querySelectorAll('a[href$=".html"]').forEach(link => {
+document.querySelectorAll('a[href$="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
         // For demo purposes, prevent default and show alert
         // In a real application, you would allow the navigation
