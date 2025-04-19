@@ -375,8 +375,8 @@ header {
 }
 
 .profile-image {
-    width: 180px;
-    height: 180px;
+    width: 280px;
+    height: 280px;
     border-radius: 15px;
     overflow: hidden;
     flex-shrink: 0;
@@ -394,7 +394,7 @@ header {
 }
 
 .profile-image:hover img {
-    transform: scale(1.05);
+    transform: scale(1.35);
 }
 
 .profile-image-overlay {
@@ -1897,8 +1897,8 @@ footer {
 
 @media (max-width: 480px) {
     .profile-image {
-        width: 150px;
-        height: 150px;
+        width: 250px;
+        height: 250px;
     }
     
     .gradient-text {
