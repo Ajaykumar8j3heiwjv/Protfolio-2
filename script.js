@@ -332,7 +332,7 @@ function initFormValidation() {
             
             // If validation passes, you would normally submit the form
             // For demo purposes, we'll just show an alert
-            // alert('Thank you for your message! I will get back to you soon.');
+            alert('Thank you for your message! I will get back to you soon.');
             contactForm.submit();
             
             // In a real application, you would submit the form data to the server
