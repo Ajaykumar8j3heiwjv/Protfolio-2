@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials - AjayKumar SK</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .testimonials-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .testimonials-header p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .testimonials-container {
+            margin-bottom: 60px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: var(--accent-blue);
+            opacity: 0.2;
+        }
+        
+        .testimonial-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .testimonial-rating {
+            margin-top: 15px;
+            color: #FFD700;
+        }
+        
+        .featured-testimonials {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .featured-slider {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-slide {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .featured-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .featured-content {
+            flex: 1;
+        }
+        
+        .featured-quote {
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .featured-quote::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -20px;
+            left: -30px;
+            font-size: 24px;
+            color: var(--accent-blue);
+            opacity: 0.2;
+        }
+        
+        .featured-author h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .featured-author p {
+            color: var(--accent-blue);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .featured-company {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .featured-company img {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            transform: scale(1.2);
+        }
+        
+        .video-testimonials {
+            margin-bottom: 60px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .video-author {
+            color: var(--accent-blue);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .video-duration {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .featured-slide {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .featured-image {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+            
+            .featured-quote::before {
+                left: 0;
+                top: -30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div id="particles-js"></div>
+        <div class="code-rain" id="code-rain"></div>
+        <div class="floating-shapes">
+            <div class="shape" data-shape="circle"></div>
+            <div class="shape" data-shape="square"></div>
+            <div class="shape" data-shape="triangle"></div>
+            <div class="shape" data-shape="code">&lt;/&gt;</div>
+            <div class="shape" data-shape="code">{ }</div>
+            <div class="shape" data-shape="code">( )</div>
+            <div class="shape" data-shape="diamond"></div>
+            <div class="shape" data-shape="code">&lt;div&gt;</div>
+            <div class="shape" data-shape="code">function()</div>
+            <div class="shape" data-shape="code">return</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="profile-pic-small">
+                <img src="profile-pic.jpg" alt="AjayKumar SK">
+            </div>
+            <div class="sidebar-icons">
+                <a href="index.html" title="Home"><i class="fas fa-home"></i></a>
+                <a href="about.html" title="About Me"><i class="fas fa-user"></i></a>
+                <a href="experience.html" title="Experience"><i class="fas fa-briefcase"></i></a>
+                <a href="index.html#skills" title="Skills"><i class="fas fa-code"></i></a>
+                <a href="index.html#services" title="Services"><i class="fas fa-cogs"></i></a>
+                <a href="projects.html" title="Projects"><i class="fas fa-rocket"></i></a>
+                <a href="testimonials.html" class="active" title="Testimonials"><i class="fas fa-comment"></i></a>
+                <a href="blog.html" title="Blog"><i class="fas fa-blog"></i></a>
+                <a href="index.html#contact" title="Contact"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="arrow-up">
+                <a href="#top"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            
+            <div class="testimonials-header">
+                <h1>Client Testimonials</h1>
+                <p>What my clients and colleagues have to say about working with me</p>
+            </div>
+            
+            <div class="featured-testimonials">
+                <h2 class="section-title">Featured Testimonials</h2>
+                
+                <div class="featured-slider">
+                    <div class="featured-slide">
+                        <div class="featured-image">
+                            <img src="testimonial-featured.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="featured-content">
+                            <div class="featured-quote">
+                                "Working with AjayKumar was an absolute pleasure. His technical expertise, creative approach, and attention to detail transformed our outdated website into a modern, user-friendly platform that has significantly improved our online presence. He took the time to understand our business needs and delivered a solution that exceeded our expectations. I highly recommend AjayKumar for any web development project."
+                            </div>
+                            <div class="featured-author">
+                                <h3>Sarah Johnson</h3>
+                                <p>Marketing Director</p>
+                                <div class="featured-company">
+                                    <img src="company-logo1.jpg" alt="TechSolutions Inc.">
+                                    <span>TechSolutions Inc.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-controls">
+                        <div class="slider-dot active"></div>
+                        <div class="slider-dot"></div>
+                        <div class="slider-dot"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "AjayKumar delivered our e-commerce website on time and within budget. His technical skills and problem-solving abilities were impressive. The site is performing exceptionally well, with a 40% increase in conversions since launch."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="testimonial1.jpg" alt="Michael Chen">
+                            </div>
+                            <div class="author-info">
+                                <h3>Michael Chen</h3>
+                                <p>E-commerce Manager, StyleHub</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "I was impressed by AjayKumar's UI/UX design skills. He completely redesigned our app interface, making it more intuitive and visually appealing. Our user engagement metrics have improved significantly since the redesign."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="testimonial2.jpg" alt="Priya Sharma">
+                            </div>
+                            <div class="author-info">
+                                <h3>Priya Sharma</h3>
+                                <p>Product Manager, AppWorks</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "AjayKumar is a talented developer who understands both the technical and business aspects of web development. He built a custom CRM system for our company that has streamlined our operations and improved customer service."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="testimonial3.jpg" alt="David Wilson">
+                            </div>
+                            <div class="author-info">
+                                <h3>David Wilson</h3>
+                                <p>CEO, Wilson Enterprises</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "Working with AjayKumar on our website redesign was a great experience. He is professional, responsive, and delivers high-quality work. His attention to detail and creative solutions helped us achieve our goals."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="testimonial4.jpg" alt="Emily Rodriguez">
+                            </div>
+                            <div class="author-info">
+                                <h3>Emily Rodriguez</h3>
+                                <p>Creative Director, DesignLab</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "AjayKumar developed a custom web application for our healthcare practice that has revolutionized how we manage patient data. His technical expertise and understanding of our industry-specific needs were invaluable."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="testimonial5.jpg" alt="Dr. James Lee">
+                            </div>
+                            <div class="author-info">
+                                <h3>Dr. James Lee</h3>
+                                <p>Director, HealthFirst Clinic</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "I hired AjayKumar to develop an e-learning platform for my online courses. His work was exceptional, and he went above and beyond to add features that I hadn't even thought of. The platform is user-friendly and has received great feedback from students."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="testimonial6.jpg" alt="Sophia Martinez">
+                            </div>
+                            <div class="author-info">
+                                <h3>Sophia Martinez</h3>
+                                <p>Founder, EduTech Academy</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-testimonials">
+                <h2 class="section-title">Video Testimonials</h2>
+                
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="video-thumb1.jpg" alt="Video Testimonial">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="video-info">
+                            <h3 class="video-title">Client Success Story: E-commerce Redesign</h3>
+                            <p class="video-author">Michael Chen, StyleHub</p>
+                            <div class="video-duration">
+                                <i class="far fa-clock"></i>
+                                <span>3:45</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="video-thumb2.jpg" alt="Video Testimonial">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">App Redesign: Before and After</h3>
+                            <p class="video-author">Priya Sharma, AppWorks</p>
+                            <div class="video-duration">
+                                <i class="far fa-clock"></i>
+                                <span>4:20</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="video-thumb3.jpg" alt="Video Testimonial">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Healthcare Web Application Case Study</h3>
+                            <p class="video-author">Dr. James Lee, HealthFirst Clinic</p>
+                            <div class="video-duration">
+                                <i class="far fa-clock"></i>
+                                <span>5:15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <h2>AjayKumar<span>SK</span></h2>
+                        <p>Web Developer & UI/UX Designer</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="experience.html">Experience</a>
+                        <a href="education.html">Education</a>
+                        <a href="index.html#services">Services</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="index.html#contact">Contact</a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 AjayKumar SK. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="social-icons">
+                <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Testimonial slider functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dots = document.querySelectorAll('.slider-dot');
+            
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    dots.forEach(d => d.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // In a real implementation, this would change the slide
+                    // For demo purposes, we're just changing the active dot
+                });
+            });
+            
+            // Video modal functionality would be implemented here
+            const playButtons = document.querySelectorAll('.play-button');
+            
+            playButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('In a complete implementation, this would open a video modal.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

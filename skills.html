@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - AjayKumar SK</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .skills-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .skills-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .skills-header p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .skills-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+        
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            border-color: transparent;
+        }
+        
+        .skills-container {
+            margin-bottom: 60px;
+        }
+        
+        .skills-section {
+            display: none;
+        }
+        
+        .skills-section.active {
+            display: block;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+        }
+        
+        .skill-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--accent-blue);
+            display: inline-block;
+        }
+        
+        .skill-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .skill-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .skill-progress {
+            margin-top: 20px;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .progress-label {
+            font-weight: 500;
+        }
+        
+        .progress-percentage {
+            color: var(--text-secondary);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+        }
+        
+        .skill-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .skill-list li {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-list li i {
+            color: var(--accent-blue);
+        }
+        
+        .skill-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .tool-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-item:hover {
+            background-color: rgba(58, 134, 255, 0.1);
+            color: var(--text-primary);
+        }
+        
+        .tool-item i {
+            color: var(--accent-blue);
+        }
+        
+        .skills-chart {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+        
+        .chart-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .radar-chart {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .chart-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        
+        .skills-timeline {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+        
+        .timeline-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            border-width: 10px;
+            border-style: solid;
+            top: 15px;
+        }
+        
+        .left .timeline-content::after {
+            border-color: transparent var(--secondary-bg) transparent transparent;
+            right: 100%;
+        }
+        
+        .right .timeline-content::after {
+            border-color: transparent transparent transparent var(--secondary-bg);
+            left: 100%;
+        }
+        
+        .timeline-year {
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-event {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .left .timeline-content::after, .right .timeline-content::after {
+                border-color: transparent var(--secondary-bg) transparent transparent;
+                right: 100%;
+                left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div id="particles-js"></div>
+        <div class="code-rain" id="code-rain"></div>
+        <div class="floating-shapes">
+            <div class="shape" data-shape="circle"></div>
+            <div class="shape" data-shape="square"></div>
+            <div class="shape" data-shape="triangle"></div>
+            <div class="shape" data-shape="code">&lt;/&gt;</div>
+            <div class="shape" data-shape="code">{ }</div>
+            <div class="shape" data-shape="code">( )</div>
+            <div class="shape" data-shape="diamond"></div>
+            <div class="shape" data-shape="code">&lt;div&gt;</div>
+            <div class="shape" data-shape="code">function()</div>
+            <div class="shape" data-shape="code">return</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="profile-pic-small">
+                <img src="profile-pic.jpg" alt="AjayKumar SK">
+            </div>
+            <div class="sidebar-icons">
+                <a href="index.html" title="Home"><i class="fas fa-home"></i></a>
+                <a href="about.html" title="About Me"><i class="fas fa-user"></i></a>
+                <a href="experience.html" title="Experience"><i class="fas fa-briefcase"></i></a>
+                <a href="skills.html" class="active" title="Skills"><i class="fas fa-code"></i></a>
+                <a href="services.html" title="Services"><i class="fas fa-cogs"></i></a>
+                <a href="projects.html" title="Projects"><i class="fas fa-rocket"></i></a>
+                <a href="testimonials.html" title="Testimonials"><i class="fas fa-comment"></i></a>
+                <a href="blog.html" title="Blog"><i class="fas fa-blog"></i></a>
+                <a href="contact.html" title="Contact"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="arrow-up">
+                <a href="#top"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            
+            <div class="skills-header">
+                <h1>My Skills</h1>
+                <p>A comprehensive overview of my technical expertise and professional capabilities</p>
+            </div>
+            
+            <div class="skills-tabs">
+                <button class="tab-btn active" data-tab="technical">Technical Skills</button>
+                <button class="tab-btn" data-tab="design">Design Skills</button>
+                <button class="tab-btn" data-tab="soft">Soft Skills</button>
+                <button class="tab-btn" data-tab="tools">Tools & Technologies</button>
+            </div>
+            
+            <div class="skills-container">
+                <!-- Technical Skills Section -->
+                <div class="skills-section active" id="technical">
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="skill-title">Frontend Development</h3>
+                            <p class="skill-description">Building responsive, interactive, and user-friendly web interfaces using modern frontend technologies and frameworks.</p>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">HTML5/CSS3</span>
+                                    <span class="progress-percentage">95%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">JavaScript (ES6+)</span>
+                                    <span class="progress-percentage">90%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">React.js</span>
+                                    <span class="progress-percentage">85%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">Vue.js</span>
+                                    <span class="progress-percentage">80%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h3 class="skill-title">Backend Development</h3>
+                            <p class="skill-description">Developing robust server-side applications, APIs, and database systems to power web applications.</p>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">Node.js</span>
+                                    <span class="progress-percentage">85%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">Express.js</span>
+                                    <span class="progress-percentage">80%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">MongoDB</span>
+                                    <span class="progress-percentage">75%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">MySQL</span>
+                                    <span class="progress-percentage">70%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="skill-title">Mobile Development</h3>
+                            <p class="skill-description">Creating cross-platform mobile applications with modern frameworks and native-like user experiences.</p>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">React Native</span>
+                                    <span class="progress-percentage">80%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">Flutter</span>
+                                    <span class="progress-percentage">65%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">Progressive Web Apps</span>
+                                    <span class="progress-percentage">85%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">Mobile UI/UX</span>
+                                    <span class="progress-percentage">75%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3 class="skill-title">DevOps & Deployment</h3>
+                            <p class="skill-description">Setting up CI/CD pipelines, cloud infrastructure, and deployment strategies for web applications.</p>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">Git & GitHub</span>
+                                    <span class="progress-percentage">90%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">AWS</span>
+                                    <span class="progress-percentage">70%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">Docker</span>
+                                    <span class="progress-percentage">65%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-progress">
+                                <div class="progress-info">
+                                    <span class="progress-label">CI/CD</span>
+                                    <span class="progress-percentage">75%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Design Skills Section -->
+                <div class="skills-section" id="design">
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h3 class="skill-title">UI Design</h3>
+                            <p class="skill-description">Creating visually appealing and consistent user interfaces that align with brand identity and design principles.</p>
+                            
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check-circle"></i> Visual Design & Layout</li>
+                                <li><i class="fas fa-check-circle"></i> Color Theory & Typography</li>
+                                <li><i class="fas fa-check-circle"></i> Responsive Design</li>
+                                <li><i class="fas fa-check-circle"></i> Design Systems</li>
+                                <li><i class="fas fa-check-circle"></i> Component Libraries</li>
+                            </ul>
+                            
+                            <div class="skill-tools">
+                                <span class="tool-item"><i class="fab fa-figma"></i> Figma</span>
+                                <span class="tool-item"><i class="fab fa-adobe"></i> Adobe XD</span>
+                                <span class="tool-item"><i class="fab fa-sketch"></i> Sketch</span>
+                                <span class="tool-item"><i class="fab fa-adobe"></i> Photoshop</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 class="skill-title">UX Design</h3>
+                            <p class="skill-description">Designing intuitive and user-centered experiences through research, testing, and iterative design processes.</p>
+                            
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check-circle"></i> User Research & Personas</li>
+                                <li><i class="fas fa-check-circle"></i> Information Architecture</li>
+                                <li><i class="fas fa-check-circle"></i> Wireframing & Prototyping</li>
+                                <li><i class="fas fa-check-circle"></i> Usability Testing</li>
+                                <li><i class="fas fa-check-circle"></i> Interaction Design</li>
+                            </ul>
+                            
+                            <div class="skill-tools">
+                                <span class="tool-item"><i class="fas fa-sitemap"></i> User Flows</span>
+                                <span class="tool-item"><i class="fas fa-pencil-alt"></i> Wireframes</span>
+                                <span class="tool-item"><i class="fas fa-desktop"></i> Prototypes</span>
+                                <span class="tool-item"><i class="fas fa-chart-bar"></i> Analytics</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-vector-square"></i>
+                            </div>
+                            <h3 class="skill-title">Graphic Design</h3>
+                            <p class="skill-description">Creating visual content for digital and print media, including logos, illustrations, and marketing materials.</p>
+                            
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check-circle"></i> Logo Design</li>
+                                <li><i class="fas fa-check-circle"></i> Brand Identity</li>
+                                <li><i class="fas fa-check-circle"></i> Illustration</li>
+                                <li><i class="fas fa-check-circle"></i> Icon Design</li>
+                                <li><i class="fas fa-check-circle"></i> Marketing Materials</li>
+                            </ul>
+                            
+                            <div class="skill-tools">
+                                <span class="tool-item"><i class="fab fa-adobe"></i> Illustrator</span>
+                                <span class="tool-item"><i class="fab fa-adobe"></i> Photoshop</span>
+                                <span class="tool-item"><i class="fab fa-adobe"></i> InDesign</span>
+                                <span class="tool-item"><i class="fas fa-palette"></i> Color Theory</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <h3 class="skill-title">Motion & Animation</h3>
+                            <p class="skill-description">Creating engaging animations and motion graphics for web interfaces and digital content.</p>
+                            
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check-circle"></i> UI Animations</li>
+                                <li><i class="fas fa-check-circle"></i> Micro-interactions</li>
+                                <li><i class="fas fa-check-circle"></i> CSS Animations</li>
+                                <li><i class="fas fa-check-circle"></i> SVG Animations</li>
+                                <li><i class="fas fa-check-circle"></i> Motion Graphics</li>
+                            </ul>
+                            
+                            <div class="skill-tools">
+                                <span class="tool-item"><i class="fab fa-css3-alt"></i> CSS</span>
+                                <span class="tool-item"><i class="fab fa-js"></i> GSAP</span>
+                                <span class="tool-item"><i class="fab fa-adobe"></i> After Effects</span>
+                                <span class="tool-item"><i class="fas fa-code"></i> Lottie</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Soft Skills Section -->
+                <div class="skills-section" id="soft">
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3 class="skill-title">Communication</h3>
+                            <p class="skill-description">Effectively communicating ideas, requirements, and solutions to team members, clients, and stakeholders.</p>
+                            
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check-circle"></i> Clear & Concise Communication</li>
+                                <li><i class="fas fa-check-circle"></i> Technical Documentation</li>
+                                <li><i class="fas fa-check-circle"></i> Client Presentations</li>
+                                <li><i class="fas fa-check-circle"></i> Active Listening</li>
+                                <li><i class="fas fa-check-circle"></i> Feedback Incorporation</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="skill-title">Collaboration</h3>
+                            <p class="skill-description">Working effectively in cross-functional teams to achieve project goals and deliver high-quality results.</p>
+                            
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check-circle"></i> Team Coordination</li>
+                                <li><i class="fas fa-check-circle"></i> Cross-functional Collaboration</li>
+                                <li><i class="fas fa-check-circle"></i> Remote Work Efficiency</li>
+                                <li><i class="fas fa-check-circle"></i> Knowledge Sharing</li>
+                                <li><i class="fas fa-check-circle"></i> Mentoring Junior Developers</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 class="skill-title">Problem Solving</h3>
+                            <p class="skill-description">Analyzing complex problems and developing effective solutions through critical thinking and creativity.</p>
+                            
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check-circle"></i> Analytical Thinking</li>
+                                <li><i class="fas fa-check-circle"></i> Debugging & Troubleshooting</li>
+                                <li><i class="fas fa-check-circle"></i> Creative Solutions</li>
+                                <li><i class="fas fa-check-circle"></i> Optimization Strategies</li>
+                                <li><i class="fas fa-check-circle"></i> Technical Research</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <h3 class="skill-title">Project Management</h3>
+                            <p class="skill-description">Planning, organizing, and executing projects efficiently to meet deadlines and deliver quality results.</p>
+                            
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check-circle"></i> Time Management</li>
+                                <li><i class="fas fa-check-circle"></i> Task Prioritization</li>
+                                <li><i class="fas fa-check-circle"></i> Agile Methodologies</li>
+                                <li><i class="fas fa-check-circle"></i> Resource Allocation</li>
+                                <li><i class="fas fa-check-circle"></i> Risk Management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools & Technologies Section -->
+                <div class="skills-section" id="tools">
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <h3 class="skill-title">Version Control & Collaboration</h3>
+                            <p class="skill-description">Tools and platforms for code management, collaboration, and project tracking.</p>
+                            
+                            <div class="skill-tools">
+                                <span class="tool-item"><i class="fab fa-git-alt"></i> Git</span>
+                                <span class="tool-item"><i class="fab fa-github"></i> GitHub</span>
+                                <span class="tool-item"><i class="fab fa-gitlab"></i> GitLab</span>
+                                <span class="tool-item"><i class="fab fa-bitbucket"></i> Bitbucket</span>
+                                <span class="tool-item"><i class="fab fa-jira"></i> Jira</span>
+                                <span class="tool-item"><i class="fab fa-trello"></i> Trello</span>
+                                <span class="tool-item"><i class="fab fa-slack"></i> Slack</span>
+                                <span class="tool-item"><i class="fas fa-tasks"></i> Asana</span>
+                                <span class="tool-item"><i class="fas fa-clipboard-list"></i> Notion</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="skill-title">Development Tools</h3>
+                            <p class="skill-description">IDEs, code editors, and development environments for efficient coding.</p>
+                            
+                            <div class="skill-tools">
+                                <span class="tool-item"><i class="fas fa-code"></i> VS Code</span>
+                                <span class="tool-item"><i class="fab fa-chrome"></i> Chrome DevTools</span>
+                                <span class="tool-item"><i class="fas fa-terminal"></i> Terminal</span>
+                                <span class="tool-item"><i class="fab fa-npm"></i> npm/yarn</span>
+                                <span class="tool-item"><i class="fas fa-cogs"></i> Webpack</span>
+                                <span class="tool-item"><i class="fas fa-vial"></i> Jest</span>
+                                <span class="tool-item"><i class="fas fa-bug"></i> Postman</span>
+                                <span class="tool-item"><i class="fas fa-database"></i> MongoDB Compass</span>
+                                <span class="tool-item"><i class="fas fa-table"></i> MySQL Workbench</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h3 class="skill-title">Design & Prototyping Tools</h3>
+                            <p class="skill-description">Software and platforms for creating designs, prototypes, and visual assets.</p>
+                            
+                            <div class="skill-tools">
+                                <span class="tool-item"><i class="fab fa-figma"></i> Figma</span>
+                                <span class="tool-item"><i class="fab fa-adobe"></i> Adobe XD</span>
+                                <span class="tool-item"><i class="fab fa-sketch"></i> Sketch</span>
+                                <span class="tool-item"><i class="fab fa-invision"></i> InVision</span>
+                                <span class="tool-item"><i class="fab fa-adobe"></i> Photoshop</span>
+                                <span class="tool-item"><i class="fab fa-adobe"></i> Illustrator</span>
+                                <span class="tool-item"><i class="fas fa-pencil-ruler"></i> Balsamiq</span>
+                                <span class="tool-item"><i class="fas fa-film"></i> After Effects</span>
+                                <span class="tool-item"><i class="fas fa-magic"></i> Zeplin</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3 class="skill-title">Deployment & DevOps</h3>
+                            <p class="skill-description">Platforms and tools for deploying, hosting, and managing web applications.</p>
+                            
+                            <div class="skill-tools">
+                                <span class="tool-item"><i class="fab fa-aws"></i> AWS</span>
+                                <span class="tool-item"><i class="fab fa-digital-ocean"></i> Digital Ocean</span>
+                                <span class="tool-item"><i class="fab fa-google"></i> Google Cloud</span>
+                                <span class="tool-item"><i class="fab fa-docker"></i> Docker</span>
+                                <span class="tool-item"><i class="fab fa-jenkins"></i> Jenkins</span>
+                                <span class="tool-item"><i class="fab fa-github"></i> GitHub Actions</span>
+                                <span class="tool-item"><i class="fas fa-server"></i> Nginx</span>
+                                <span class="tool-item"><i class="fab fa-node-js"></i> Heroku</span>
+                                <span class="tool-item"><i class="fas fa-fire"></i> Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-chart">
+                <h2 class="chart-title">Skills Radar Chart</h2>
+                <div class="radar-chart">
+                    <div class="chart-placeholder">
+                        <p>Interactive skills radar chart would be displayed here in a complete implementation.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-timeline">
+                <h2 class="timeline-title">Skills Learning Journey</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2016</div>
+                            <div class="timeline-event">Started Learning Web Development</div>
+                            <div class="timeline-description">Began with HTML, CSS, and basic JavaScript during my first year of college. Created simple static websites and learned the fundamentals of web design.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2018</div>
+                            <div class="timeline-event">Advanced JavaScript & Frameworks</div>
+                            <div class="timeline-description">Expanded my skills to include advanced JavaScript concepts, ES6+, and started learning React.js and Vue.js for building dynamic web applications.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-event">Full Stack Development</div>
+                            <div class="timeline-description">Learned Node.js, Express, and MongoDB to become a full stack developer. Built complete web applications with MERN stack and implemented RESTful APIs.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2022</div>
+                            <div class="timeline-event">UI/UX Design Specialization</div>
+                            <div class="timeline-description">Focused on improving UI/UX design skills through formal training and certification. Mastered Figma, Adobe XD, and user-centered design principles.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-event">Mobile & Cloud Technologies</div>
+                            <div class="timeline-description">Expanded skill set to include React Native for mobile development and AWS for cloud deployment. Implemented CI/CD pipelines and containerization with Docker.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-event">Advanced Frameworks & AI Integration</div>
+                            <div class="timeline-description">Currently learning advanced frameworks, exploring AI integration in web applications, and staying updated with the latest industry trends and technologies.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <h2>AjayKumar<span>SK</span></h2>
+                        <p>Web Developer & UI/UX Designer</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="experience.html">Experience</a>
+                        <a href="skills.html">Skills</a>
+                        <a href="services.html">Services</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 AjayKumar SK. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="social-icons">
+                <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Tab switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const skillsSections = document.querySelectorAll('.skills-section');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons and sections
+                    tabBtns.forEach(btn => btn.classList.remove('active'));
+                    skillsSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

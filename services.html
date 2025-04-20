@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - AjayKumar SK</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .services-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .services-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .services-header p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .service-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+        
+        .service-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .service-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        
+        .service-features li {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .service-features li i {
+            color: var(--accent-blue);
+            margin-top: 5px;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-blue);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .service-link:hover {
+            color: var(--text-primary);
+        }
+        
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, transparent 50%, rgba(58, 134, 255, 0.1) 50%);
+            border-radius: 0 0 15px 0;
+            z-index: 0;
+        }
+        
+        .process-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--border-color);
+            z-index: 0;
+        }
+        
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 120px;
+            z-index: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .step-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .pricing-section {
+            margin-bottom: 60px;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.popular {
+            position: relative;
+            border: 2px solid transparent;
+            background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+                        linear-gradient(135deg, var(--gradient-start), var(--gradient-end)) border-box;
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .pricing-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .pricing-price {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        .pricing-price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+        
+        .pricing-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pricing-features li i {
+            color: var(--accent-blue);
+        }
+        
+        .pricing-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .primary-btn {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            border: none;
+        }
+        
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+            color: var(--text-primary);
+        }
+        
+        .secondary-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        
+        .secondary-btn:hover {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            transform: translateY(-3px);
+        }
+        
+        .faq-section {
+            margin-bottom: 60px;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .faq-question i {
+            color: var(--accent-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding-bottom: 20px;
+        }
+        
+        .faq-item.active .faq-question {
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 20px;
+        }
+        
+        .cta-section {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 60px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+        }
+        
+        .cta-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-description {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            
+            .process-steps::before {
+                width: 2px;
+                height: 100%;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div id="particles-js"></div>
+        <div class="code-rain" id="code-rain"></div>
+        <div class="floating-shapes">
+            <div class="shape" data-shape="circle"></div>
+            <div class="shape" data-shape="square"></div>
+            <div class="shape" data-shape="triangle"></div>
+            <div class="shape" data-shape="code">&lt;/&gt;</div>
+            <div class="shape" data-shape="code">{ }</div>
+            <div class="shape" data-shape="code">( )</div>
+            <div class="shape" data-shape="diamond"></div>
+            <div class="shape" data-shape="code">&lt;div&gt;</div>
+            <div class="shape" data-shape="code">function()</div>
+            <div class="shape" data-shape="code">return</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="profile-pic-small">
+                <img src="profile-pic.jpg" alt="AjayKumar SK">
+            </div>
+            <div class="sidebar-icons">
+                <a href="index.html" title="Home"><i class="fas fa-home"></i></a>
+                <a href="about.html" title="About Me"><i class="fas fa-user"></i></a>
+                <a href="experience.html" title="Experience"><i class="fas fa-briefcase"></i></a>
+                <a href="skills.html" title="Skills"><i class="fas fa-code"></i></a>
+                <a href="services.html" class="active" title="Services"><i class="fas fa-cogs"></i></a>
+                <a href="projects.html" title="Projects"><i class="fas fa-rocket"></i></a>
+                <a href="testimonials.html" title="Testimonials"><i class="fas fa-comment"></i></a>
+                <a href="blog.html" title="Blog"><i class="fas fa-blog"></i></a>
+                <a href="contact.html" title="Contact"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="arrow-up">
+                <a href="#top"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            
+            <div class="services-header">
+                <h1>My Services</h1>
+                <p>Professional services I offer to help businesses and individuals achieve their digital goals</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-description">Custom web development services tailored to your specific needs, from simple websites to complex web applications.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> <span>Responsive website development for optimal viewing on all devices</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Custom web application development with modern frameworks</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>E-commerce solutions with payment gateway integration</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Content Management Systems (CMS) implementation</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Website maintenance and support services</span></li>
+                    </ul>
+                    <a href="contact.html" class="service-link">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-description">User-centered design services that focus on creating intuitive, engaging, and visually appealing digital experiences.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> <span>User research and persona development</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Wireframing and prototyping</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Visual design and UI component creation</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Interaction design and animation</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Usability testing and design iteration</span></li>
+                    </ul>
+                    <a href="contact.html" class="service-link">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Mobile App Development</h3>
+                    <p class="service-description">Cross-platform mobile application development services that deliver native-like experiences on iOS and Android devices.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> <span>React Native app development</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Flutter app development</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Progressive Web Apps (PWAs)</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>App store submission and optimization</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>App maintenance and updates</span></li>
+                    </ul>
+                    <a href="contact.html" class="service-link">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="service-title">E-commerce Solutions</h3>
+                    <p class="service-description">Comprehensive e-commerce solutions that help businesses sell products and services online effectively.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> <span>Custom e-commerce website development</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Shopping cart and checkout optimization</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Payment gateway integration</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Inventory management systems</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Order tracking and customer management</span></li>
+                    </ul>
+                    <a href="contact.html" class="service-link">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="service-title">Backend Development</h3>
+                    <p class="service-description">Robust backend solutions that power your applications with secure, scalable, and efficient server-side functionality.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> <span>RESTful API development</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Database design and optimization</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Authentication and authorization systems</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Server setup and configuration</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Performance optimization and scaling</span></li>
+                    </ul>
+                    <a href="contact.html" class="service-link">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="service-title">Consultation & Training</h3>
+                    <p class="service-description">Expert consultation and training services to help your team improve their skills and make informed technology decisions.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> <span>Technical consultation for projects</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Code review and optimization</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Technology stack selection guidance</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Team training and workshops</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>One-on-one mentoring sessions</span></li>
+                    </ul>
+                    <a href="contact.html" class="service-link">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="process-section">
+                <h2 class="section-title">My Work Process</h2>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Discovery</div>
+                        <div class="step-description">Understanding your requirements, goals, and vision for the project.</div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Planning</div>
+                        <div class="step-description">Creating a detailed project plan, timeline, and technical specifications.</div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Design</div>
+                        <div class="step-description">Designing the user interface and experience based on your requirements.</div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Development</div>
+                        <div class="step-description">Building the application with clean, efficient, and maintainable code.</div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Testing</div>
+                        <div class="step-description">Thorough testing to ensure quality, performance, and security.</div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Deployment</div>
+                        <div class="step-description">Launching your project and providing ongoing support and maintenance.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pricing-section">
+                <h2 class="section-title">Pricing Plans</h2>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3 class="pricing-title">Basic</h3>
+                        <div class="pricing-price">$499 <span>/ project</span></div>
+                        <p class="pricing-description">Perfect for small businesses and individuals looking for a simple website or application.</p>
+                        
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> <span>Responsive Website (up to 5 pages)</span></li>
+                            <li><i class="fas fa-check"></i> <span>Basic SEO Optimization</span></li>
+                            <li><i class="fas fa-check"></i> <span>Contact Form Integration</span></li>
+                            <li><i class="fas fa-check"></i> <span>Mobile-Friendly Design</span></li>
+                            <li><i class="fas fa-check"></i> <span>1 Month of Support</span></li>
+                        </ul>
+                        
+                        <a href="contact.html" class="pricing-btn secondary-btn">
+                            <span>Get Started</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="pricing-card popular">
+                        <div class="popular-tag">Most Popular</div>
+                        <h3 class="pricing-title">Professional</h3>
+                        <div class="pricing-price">$999 <span>/ project</span></div>
+                        <p class="pricing-description">Ideal for growing businesses that need a more comprehensive online presence.</p>
+                        
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> <span>Custom Website (up to 10 pages)</span></li>
+                            <li><i class="fas fa-check"></i> <span>Advanced SEO Optimization</span></li>
+                            <li><i class="fas fa-check"></i> <span>Content Management System</span></li>
+                            <li><i class="fas fa-check"></i> <span>E-commerce Functionality (up to 50 products)</span></li>
+                            <li><i class="fas fa-check"></i> <span>Social Media Integration</span></li>
+                            <li><i class="fas fa-check"></i> <span>3 Months of Support</span></li>
+                        </ul>
+                        
+                        <a href="contact.html" class="pricing-btn primary-btn">
+                            <span>Get Started</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <h3 class="pricing-title">Enterprise</h3>
+                        <div class="pricing-price">Custom <span>/ project</span></div>
+                        <p class="pricing-description">For businesses with complex requirements and custom functionality needs.</p>
+                        
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> <span>Fully Custom Web Application</span></li>
+                            <li><i class="fas fa-check"></i> <span>Comprehensive SEO Strategy</span></li>
+                            <li><i class="fas fa-check"></i> <span>Custom Database Development</span></li>
+                            <li><i class="fas fa-check"></i> <span>Advanced E-commerce Solutions</span></li>
+                            <li><i class="fas fa-check"></i> <span>Third-Party API Integrations</span></li>
+                            <li><i class="fas fa-check"></i> <span>6 Months of Support</span></li>
+                            <li><i class="fas fa-check"></i> <span>Priority Response Time</span></li>
+                        </ul>
+                        
+                        <a href="contact.html" class="pricing-btn secondary-btn">
+                            <span>Contact for Quote</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                
+                <div class="faq-container">
+                    <div class="faq-item active">
+                        <div class="faq-question">
+                            <h3>How long does it take to complete a website?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The timeline for website development varies depending on the complexity and scope of the project. A simple website typically takes 2-4 weeks, while more complex web applications can take 2-3 months or more. During our initial consultation, I'll provide you with a more accurate timeline based on your specific requirements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is your payment structure?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I typically work with a 50% upfront payment to begin the project, with the remaining 50% due upon completion. For larger projects, I offer milestone-based payments to break the cost into manageable installments. All payment terms are clearly outlined in the project proposal and contract.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Do you provide website maintenance services?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, I offer website maintenance services to ensure your website remains secure, up-to-date, and functioning optimally. Maintenance packages include regular updates, security monitoring, performance optimization, and content updates. I also offer on-demand maintenance services for clients who don't need regular maintenance but occasionally require updates or fixes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can you help with existing websites or only new ones?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I work with both new websites and existing ones. Whether you need a complete redesign, specific feature additions, performance improvements, or bug fixes for your current website, I can help. I'll first analyze your existing website to understand its structure and identify areas for improvement before proposing solutions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What technologies do you use for development?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I specialize in modern web technologies including HTML5, CSS3, JavaScript (ES6+), React.js, Vue.js, Node.js, Express, MongoDB, and MySQL. For mobile development, I use React Native and Flutter. The specific technologies used for your project will depend on your requirements, but I always prioritize using the most appropriate and efficient technologies for each unique project.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <h2 class="cta-title">Ready to Start Your Project?</h2>
+                <p class="cta-description">Let's work together to bring your vision to life. Contact me today to discuss your project requirements and get a free consultation.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="pricing-btn primary-btn">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact Me</span>
+                    </a>
+                    <a href="schedule.html" class="pricing-btn secondary-btn">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Schedule a Call</span>
+                    </a>
+                </div>
+            </div>
+            
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <h2>AjayKumar<span>SK</span></h2>
+                        <p>Web Developer & UI/UX Designer</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="experience.html">Experience</a>
+                        <a href="skills.html">Skills</a>
+                        <a href="services.html">Services</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 AjayKumar SK. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="social-icons">
+                <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // FAQ accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    // Toggle active class on clicked item
+                    item.classList.toggle('active');
+                    
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

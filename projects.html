@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - AjayKumar SK</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .projects-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .projects-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .projects-header p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            border-color: transparent;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 1;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tech-tag {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: var(--accent-blue);
+        }
+        
+        .featured-project {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .featured-project .project-image {
+            height: 100%;
+            min-height: 300px;
+        }
+        
+        .featured-project .project-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .featured-project .project-title {
+            font-size: 24px;
+        }
+        
+        .featured-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .project-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .page-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .page-link:hover, .page-link.active {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            border-color: transparent;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .featured-project {
+                grid-column: span 1;
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-project .project-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div id="particles-js"></div>
+        <div class="code-rain" id="code-rain"></div>
+        <div class="floating-shapes">
+            <div class="shape" data-shape="circle"></div>
+            <div class="shape" data-shape="square"></div>
+            <div class="shape" data-shape="triangle"></div>
+            <div class="shape" data-shape="code">&lt;/&gt;</div>
+            <div class="shape" data-shape="code">{ }</div>
+            <div class="shape" data-shape="code">( )</div>
+            <div class="shape" data-shape="diamond"></div>
+            <div class="shape" data-shape="code">&lt;div&gt;</div>
+            <div class="shape" data-shape="code">function()</div>
+            <div class="shape" data-shape="code">return</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="profile-pic-small">
+                <img src="profile-pic.jpg" alt="AjayKumar SK">
+            </div>
+            <div class="sidebar-icons">
+                <a href="index.html" title="Home"><i class="fas fa-home"></i></a>
+                <a href="about.html" title="About Me"><i class="fas fa-user"></i></a>
+                <a href="experience.html" title="Experience"><i class="fas fa-briefcase"></i></a>
+                <a href="index.html#skills" title="Skills"><i class="fas fa-code"></i></a>
+                <a href="index.html#services" title="Services"><i class="fas fa-cogs"></i></a>
+                <a href="projects.html" class="active" title="Projects"><i class="fas fa-rocket"></i></a>
+                <a href="testimonials.html" title="Testimonials"><i class="fas fa-comment"></i></a>
+                <a href="blog.html" title="Blog"><i class="fas fa-blog"></i></a>
+                <a href="index.html#contact" title="Contact"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="arrow-up">
+                <a href="#top"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            
+            <div class="projects-header">
+                <h1>My Projects</h1>
+                <p>A showcase of my recent work, personal projects, and contributions</p>
+            </div>
+            
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                <button class="filter-btn" data-filter="ui">UI/UX Design</button>
+                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card featured-project" data-category="web ecommerce">
+                    <div class="project-image">
+                        <img src="project-featured.jpg" alt="E-commerce Platform">
+                        <div class="project-category">E-commerce</div>
+                    </div>
+                    <div class="project-content">
+                        <span class="featured-tag">Featured Project</span>
+                        <h3 class="project-title">StyleHub E-commerce Platform</h3>
+                        <p class="project-description">A full-featured e-commerce platform built for StyleHub, a fashion retailer. The project includes product catalog, user authentication, shopping cart, payment integration, and an admin dashboard for inventory management.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe API</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Case Study</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="project1.jpg" alt="Portfolio Website">
+                        <div class="project-category">Web Development</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Personal Portfolio Website</h3>
+                        <p class="project-description">A responsive portfolio website with modern design, animations, and interactive elements. Features include dark/light mode, project filtering, and contact form.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">GSAP</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="mobile">
+                    <div class="project-image">
+                        <img src="project2.jpg" alt="Fitness App">
+                        <div class="project-category">Mobile App</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">FitTrack Mobile App</h3>
+                        <p class="project-description">A fitness tracking mobile application that allows users to track workouts, set goals, monitor progress, and connect with friends for motivation.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">Google Fit API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>App Store</span>
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="ui">
+                    <div class="project-image">
+                        <img src="project3.jpg" alt="Banking App UI">
+                        <div class="project-category">UI/UX Design</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">FinEase Banking App UI</h3>
+                        <p class="project-description">A modern and intuitive UI/UX design for a banking application, focusing on simplicity, accessibility, and security. Includes user research, wireframes, and high-fidelity prototypes.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Adobe XD</span>
+                            <span class="tech-tag">Prototyping</span>
+                            <span class="tech-tag">User Research</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>View Design</span>
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Case Study</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="project4.jpg" alt="Task Management App">
+                        <div class="project-category">Web Application</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">TaskFlow Management System</h3>
+                        <p class="project-description">A task management web application with features like task creation, assignment, progress tracking, deadline reminders, and team collaboration tools.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Socket.io</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="ecommerce">
+                    <div class="project-image">
+                        <img src="project5.jpg" alt="Restaurant Website">
+                        <div class="project-category">E-commerce</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Spice Route Restaurant Website</h3>
+                        <p class="project-description">A restaurant website with online ordering system, menu management, reservation booking, and customer reviews. Includes admin dashboard for menu and order management.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Stripe</span>
+                            <span class="tech-tag">Google Maps API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-pagination">
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link"><i class="fas fa-angle-right"></i></a>
+            </div>
+            
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <h2>AjayKumar<span>SK</span></h2>
+                        <p>Web Developer & UI/UX Designer</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="experience.html">Experience</a>
+                        <a href="education.html">Education</a>
+                        <a href="index.html#services">Services</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="index.html#contact">Contact</a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 AjayKumar SK. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="social-icons">
+                <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Project filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        if (filter === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            const categories = card.getAttribute('data-category').split(' ');
+                            if (categories.includes(filter)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - AjayKumar SK</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .contact-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-header p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-info {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .info-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .info-item {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+        
+        .info-content h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .info-content p, .info-content a {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+        
+        .info-content a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .social-links {
+            margin-top: 30px;
+        }
+        
+        .social-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+        }
+        
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: var(--secondary-bg);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            background-color: rgba(58, 134, 255, 0.1);
+        }
+        
+        .social-link i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--accent-blue);
+        }
+        
+        .social-link span {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .contact-form {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--accent-blue);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+        }
+        
+        .map-section {
+            margin-bottom: 60px;
+        }
+        
+        .map-title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .availability-section {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 60px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .availability-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .availability-description {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+        
+        .availability-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background-color: rgba(39, 174, 96, 0.1);
+            color: #27AE60;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #27AE60;
+            position: relative;
+        }
+        
+        .status-indicator::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(39, 174, 96, 0.3);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        .schedule-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            border: none;
+        }
+        
+        .schedule-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div id="particles-js"></div>
+        <div class="code-rain" id="code-rain"></div>
+        <div class="floating-shapes">
+            <div class="shape" data-shape="circle"></div>
+            <div class="shape" data-shape="square"></div>
+            <div class="shape" data-shape="triangle"></div>
+            <div class="shape" data-shape="code">&lt;/&gt;</div>
+            <div class="shape" data-shape="code">{ }</div>
+            <div class="shape" data-shape="code">( )</div>
+            <div class="shape" data-shape="diamond"></div>
+            <div class="shape" data-shape="code">&lt;div&gt;</div>
+            <div class="shape" data-shape="code">function()</div>
+            <div class="shape" data-shape="code">return</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="profile-pic-small">
+                <img src="profile-pic.jpg" alt="AjayKumar SK">
+            </div>
+            <div class="sidebar-icons">
+                <a href="index.html" title="Home"><i class="fas fa-home"></i></a>
+                <a href="about.html" title="About Me"><i class="fas fa-user"></i></a>
+                <a href="experience.html" title="Experience"><i class="fas fa-briefcase"></i></a>
+                <a href="skills.html" title="Skills"><i class="fas fa-code"></i></a>
+                <a href="services.html" title="Services"><i class="fas fa-cogs"></i></a>
+                <a href="projects.html" title="Projects"><i class="fas fa-rocket"></i></a>
+                <a href="testimonials.html" title="Testimonials"><i class="fas fa-comment"></i></a>
+                <a href="blog.html" title="Blog"><i class="fas fa-blog"></i></a>
+                <a href="contact.html" class="active" title="Contact"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="arrow-up">
+                <a href="#top"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            
+            <div class="contact-header">
+                <h1>Get In Touch</h1>
+                <p>Have a project in mind or want to discuss a potential collaboration? I'd love to hear from you!</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2 class="info-title">Contact Information</h2>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email</h3>
+                            <p><a href="mailto:contact@ajaysk.com">contact@ajaysk.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Phone</h3>
+                            <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Location</h3>
+                            <p>Chennai, Tamil Nadu, India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Working Hours</h3>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM IST</p>
+                            <p>Saturday: 10:00 AM - 2:00 PM IST</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h3 class="social-title">Connect With Me</h3>
+                        <div class="social-grid">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                                <span>Twitter</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-dribbble"></i>
+                                <span>Dribbble</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-behance"></i>
+                                <span>Behance</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2 class="form-title">Send Me a Message</h2>
+                    
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a Service</option>
+                                <option value="web-development">Web Development</option>
+                                <option value="ui-ux-design">UI/UX Design</option>
+                                <option value="mobile-app">Mobile App Development</option>
+                                <option value="e-commerce">E-commerce Solutions</option>
+                                <option value="backend">Backend Development</option>
+                                <option value="consultation">Consultation & Training</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" placeholder="Tell me about your project, requirements, or any questions you have." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="availability-section">
+                <h2 class="availability-title">Current Availability</h2>
+                <p class="availability-description">I'm currently available for freelance projects, consultations, and collaborations. My schedule is open for new opportunities starting from May 2025.</p>
+                <div class="availability-status">
+                    <span class="status-indicator"></span>
+                    <span>Available for Work</span>
+                </div>
+                <a href="schedule.html" class="schedule-btn">
+                    <i class="fas fa-calendar-check"></i> Schedule a Call
+                </a>
+            </div>
+            
+            <div class="map-section">
+                <h2 class="map-title">Find Me Here</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.84916296526!2d80.06892754326367!3d13.047525288790662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai%2C%20Tamil%20Nadu%2C%20India!5e0!3m2!1sen!2sin!4v1650956280000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <h2>AjayKumar<span>SK</span></h2>
+                        <p>Web Developer & UI/UX Designer</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="experience.html">Experience</a>
+                        <a href="skills.html">Skills</a>
+                        <a href="services.html">Services</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 AjayKumar SK. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="social-icons">
+                <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Form submission handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // In a real implementation, you would send the form data to a server
+                    // For demo purposes, we'll just show an alert
+                    alert('Thank you for your message! I will get back to you as soon as possible.');
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

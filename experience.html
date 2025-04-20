@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience - AjayKumar SK</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .experience-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .experience-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .experience-header p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .experience-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+        
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            border-color: transparent;
+        }
+        
+        .experience-container {
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+        
+        .experience-timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--border-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -50px;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: var(--secondary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+        
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .timeline-title {
+            flex: 1;
+            padding-left: 20px;
+        }
+        
+        .job-title {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        
+        .company-name {
+            font-size: 16px;
+            color: var(--accent-blue);
+            margin-bottom: 5px;
+        }
+        
+        .job-duration {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .job-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .responsibilities {
+            margin-top: 20px;
+        }
+        
+        .responsibilities h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .responsibilities ul {
+            padding-left: 20px;
+        }
+        
+        .responsibilities li {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .technologies {
+            margin-top: 20px;
+        }
+        
+        .technologies h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tech-tag {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .achievements {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .achievements h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .achievements h3 i {
+            color: var(--accent-blue);
+        }
+        
+        .achievements ul {
+            padding-left: 20px;
+        }
+        
+        .achievements li {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .timeline-title {
+                padding-left: 0;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div id="particles-js"></div>
+        <div class="code-rain" id="code-rain"></div>
+        <div class="floating-shapes">
+            <div class="shape" data-shape="circle"></div>
+            <div class="shape" data-shape="square"></div>
+            <div class="shape" data-shape="triangle"></div>
+            <div class="shape" data-shape="code">&lt;/&gt;</div>
+            <div class="shape" data-shape="code">{ }</div>
+            <div class="shape" data-shape="code">( )</div>
+            <div class="shape" data-shape="diamond"></div>
+            <div class="shape" data-shape="code">&lt;div&gt;</div>
+            <div class="shape" data-shape="code">function()</div>
+            <div class="shape" data-shape="code">return</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="profile-pic-small">
+                <img src="profile-pic.jpg" alt="AjayKumar SK">
+            </div>
+            <div class="sidebar-icons">
+                <a href="index.html" title="Home"><i class="fas fa-home"></i></a>
+                <a href="about.html" title="About Me"><i class="fas fa-user"></i></a>
+                <a href="experience.html" class="active" title="Experience"><i class="fas fa-briefcase"></i></a>
+                <a href="index.html#skills" title="Skills"><i class="fas fa-code"></i></a>
+                <a href="index.html#services" title="Services"><i class="fas fa-cogs"></i></a>
+                <a href="projects.html" title="Projects"><i class="fas fa-rocket"></i></a>
+                <a href="testimonials.html" title="Testimonials"><i class="fas fa-comment"></i></a>
+                <a href="blog.html" title="Blog"><i class="fas fa-blog"></i></a>
+                <a href="index.html#contact" title="Contact"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="arrow-up">
+                <a href="#top"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            
+            <div class="experience-header">
+                <h1>My Experience</h1>
+                <p>A detailed look at my professional journey and the skills I've developed along the way</p>
+            </div>
+            
+            <div class="experience-tabs">
+                <button class="tab-btn active" data-filter="all">All</button>
+                <button class="tab-btn" data-filter="design">UI/UX Design</button>
+                <button class="tab-btn" data-filter="development">Web Development</button>
+                <button class="tab-btn" data-filter="fullstack">Full Stack</button>
+            </div>
+            
+            <div class="experience-container">
+                <div class="experience-timeline">
+                    <div class="timeline-item" data-category="design">
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="company-logo">
+                                    <span>A</span>
+                                </div>
+                                <div class="timeline-title">
+                                    <h3 class="job-title">UI/UX Designer</h3>
+                                    <div class="company-name">Altrusty</div>
+                                    <div class="job-duration">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <span>Jan 2024 - Present</span>
+                                    </div>
+                                    <div class="job-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Chennai, India</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-description">
+                                <p>As a UI/UX Designer at Altrusty, I work closely with clients and development teams to create intuitive and visually appealing digital experiences. I'm responsible for the entire design process, from initial research and wireframing to creating high-fidelity prototypes and design systems.</p>
+                            </div>
+                            
+                            <div class="responsibilities">
+                                <h3>Key Responsibilities:</h3>
+                                <ul>
+                                    <li>Conduct user research and create user personas to understand target audience needs and behaviors.</li>
+                                    <li>Design wireframes, mockups, and interactive prototypes for web and mobile applications.</li>
+                                    <li>Develop comprehensive UI component libraries and design systems for consistent user experiences.</li>
+                                    <li>Collaborate with developers to ensure accurate implementation of designs.</li>
+                                    <li>Conduct usability testing and iterate designs based on user feedback.</li>
+                                    <li>Create visual assets including icons, illustrations, and graphics for various projects.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="technologies">
+                                <h3>Technologies & Tools:</h3>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">Figma</span>
+                                    <span class="tech-tag">Adobe XD</span>
+                                    <span class="tech-tag">Sketch</span>
+                                    <span class="tech-tag">InVision</span>
+                                    <span class="tech-tag">Photoshop</span>
+                                    <span class="tech-tag">Illustrator</span>
+                                    <span class="tech-tag">Prototyping</span>
+                                    <span class="tech-tag">User Research</span>
+                                    <span class="tech-tag">Usability Testing</span>
+                                </div>
+                            </div>
+                            
+                            <div class="achievements">
+                                <h3><i class="fas fa-trophy"></i> Key Achievements:</h3>
+                                <ul>
+                                    <li>Redesigned the company's flagship product, resulting in a 35% increase in user engagement and a 25% decrease in user complaints.</li>
+                                    <li>Created a comprehensive design system that reduced design inconsistencies by 90% and accelerated the development process by 40%.</li>
+                                    <li>Led the UX research for a new mobile application, identifying key user pain points and opportunities for innovation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-category="fullstack">
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="company-logo">
+                                    <span>FG</span>
+                                </div>
+                                <div class="timeline-title">
+                                    <h3 class="job-title">Full Stack Developer</h3>
+                                    <div class="company-name">Fain Global</div>
+                                    <div class="job-duration">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <span>Mar 2022 - Dec 2023</span>
+                                    </div>
+                                    <div class="job-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Chennai, India</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-description">
+                                <p>At Fain Global, I worked as a Full Stack Developer responsible for developing and maintaining web applications for clients in various industries. I collaborated with cross-functional teams to deliver high-quality, scalable solutions that met business requirements and provided excellent user experiences.</p>
+                            </div>
+                            
+                            <div class="responsibilities">
+                                <h3>Key Responsibilities:</h3>
+                                <ul>
+                                    <li>Developed full-stack web applications using React, Node.js, Express, and MongoDB.</li>
+                                    <li>Designed and implemented RESTful APIs and database schemas.</li>
+                                    <li>Optimized application performance and implemented caching strategies.</li>
+                                    <li>Integrated third-party services and APIs into applications.</li>
+                                    <li>Implemented authentication and authorization systems using JWT and OAuth.</li>
+                                    <li>Conducted code reviews and mentored junior developers.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="technologies">
+                                <h3>Technologies & Tools:</h3>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">Node.js</span>
+                                    <span class="tech-tag">Express</span>
+                                    <span class="tech-tag">MongoDB</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">TypeScript</span>
+                                    <span class="tech-tag">Redux</span>
+                                    <span class="tech-tag">REST APIs</span>
+                                    <span class="tech-tag">Git</span>
+                                    <span class="tech-tag">AWS</span>
+                                </div>
+                            </div>
+                            
+                            <div class="achievements">
+                                <h3><i class="fas fa-trophy"></i> Key Achievements:</h3>
+                                <ul>
+                                    <li>Led the development of a customer portal that improved client satisfaction by 45% and reduced support tickets by 30%.</li>
+                                    <li>Optimized database queries and implemented caching, resulting in a 60% improvement in application load time.</li>
+                                    <li>Developed a reusable component library that accelerated development time for new features by 50%.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-category="development">
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="company-logo">
+                                    <span>TW</span>
+                                </div>
+                                <div class="timeline-title">
+                                    <h3 class="job-title">Frontend Developer</h3>
+                                    <div class="company-name">TechWave Solutions</div>
+                                    <div class="job-duration">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <span>Jun 2020 - Feb 2022</span>
+                                    </div>
+                                    <div class="job-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Chennai, India</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-description">
+                                <p>As a Frontend Developer at TechWave Solutions, I was responsible for implementing responsive and interactive user interfaces for web applications. I worked closely with designers and backend developers to create seamless user experiences across different devices and browsers.</p>
+                            </div>
+                            
+                            <div class="responsibilities">
+                                <h3>Key Responsibilities:</h3>
+                                <ul>
+                                    <li>Developed responsive web interfaces using HTML5, CSS3, and JavaScript.</li>
+                                    <li>Built interactive components and features using Vue.js and jQuery.</li>
+                                    <li>Implemented designs from mockups and wireframes provided by the design team.</li>
+                                    <li>Ensured cross-browser compatibility and responsive design for all web applications.</li>
+                                    <li>Optimized frontend performance and loading times.</li>
+                                    <li>Collaborated with backend developers to integrate frontend with APIs.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="technologies">
+                                <h3>Technologies & Tools:</h3>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">Vue.js</span>
+                                    <span class="tech-tag">jQuery</span>
+                                    <span class="tech-tag">SASS</span>
+                                    <span class="tech-tag">Bootstrap</span>
+                                    <span class="tech-tag">Webpack</span>
+                                    <span class="tech-tag">Git</span>
+                                </div>
+                            </div>
+                            
+                            <div class="achievements">
+                                <h3><i class="fas fa-trophy"></i> Key Achievements:</h3>
+                                <ul>
+                                    <li>Redesigned the company website, improving mobile responsiveness and reducing bounce rate by 25%.</li>
+                                    <li>Implemented a custom CSS framework that standardized UI components across multiple projects.</li>
+                                    <li>Reduced page load time by 40% through optimization techniques and lazy loading.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <h2>AjayKumar<span>SK</span></h2>
+                        <p>Web Developer & UI/UX Designer</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="experience.html">Experience</a>
+                        <a href="index.html#skills">Skills</a>
+                        <a href="index.html#services">Services</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="index.html#contact">Contact</a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 AjayKumar SK. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="social-icons">
+                <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Filter functionality for experience tabs
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.tab-btn');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    timelineItems.forEach(item => {
+                        if (filter === 'all') {
+                            item.style.display = 'block';
+                        } else {
+                            if (item.getAttribute('data-category') === filter) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
